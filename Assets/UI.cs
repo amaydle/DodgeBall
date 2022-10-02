@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
 {
     public GameObject scoreUI;
     public GameObject gameOverScreen;
+    public GameObject gameStartScreen;
     public GameObject finalScoreUI;
     private TextMeshProUGUI score;
     private TextMeshProUGUI finalScore;
@@ -16,8 +17,6 @@ public class UI : MonoBehaviour
     {
         score = scoreUI.GetComponent<TextMeshProUGUI>();
         finalScore = finalScoreUI.GetComponent<TextMeshProUGUI>();
-
-        InvokeRepeating("UpdateScore", 2.0f, 1);
     }
 
     void UpdateScore()
@@ -32,5 +31,12 @@ public class UI : MonoBehaviour
         CancelInvoke();
         scoreUI.SetActive(false);
         gameOverScreen.SetActive(true);
+    }
+
+    public void GameStart(int level)
+    {
+        gameStartScreen.SetActive(false);
+        scoreUI.SetActive(true);
+        InvokeRepeating("UpdateScore", 2.0f, 1);
     }
 }
